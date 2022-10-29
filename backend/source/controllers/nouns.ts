@@ -1,11 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import axios, { AxiosResponse } from "axios";
 
-interface Post {
-  userId: Number;
+interface Nouns {
   id: Number;
-  title: String;
-  body: String;
+  currentBid: Number;
 }
 
 const getNounsData = async (
@@ -14,15 +12,16 @@ const getNounsData = async (
   next: NextFunction
 ) => {
   // get the post id from the req
-  let id: string = req.params.id;
+  // let id: string = req.params.id;
   // get the post
-  let result: AxiosResponse = await axios.get(
-    `https://jsonplaceholder.typicode.com/posts/${id}`
-  );
-  let post: Post = result.data;
-  return res.status(200).json({
-    message: post,
-  });
+  // let result: AxiosResponse = await axios.get(
+  //   `https://jsonplaceholder.typicode.com/posts/${id}`
+  // );
+  let nounsData: Nouns = {
+    id: 123,
+    currentBid: 56.66,
+  };
+  return res.status(200).json(nounsData);
 };
 
 export default { getNounsData };
