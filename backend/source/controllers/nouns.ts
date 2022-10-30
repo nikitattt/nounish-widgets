@@ -5,6 +5,7 @@ import { ImageData, getNounData } from '@nouns/assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
 import { Nouns } from '../utils/types'
+import { AnkrProvider } from '@ethersproject/providers'
 
 const { palette } = ImageData
 
@@ -49,7 +50,7 @@ const getNounsData = async (
   let result: AxiosResponse = await axios.post(url, { query: query })
   const data = result.data.data
 
-  const provider = ethers.getDefaultProvider()
+  const provider = new AnkrProvider()
   const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
   const bidder = ens ? shortENS(ens) : shortAddress(data.auctions[0].bidder.id)
 
