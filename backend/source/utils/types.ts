@@ -1,11 +1,6 @@
-export enum ProposalStatus {
-  Pending,
-  Active
-}
-
 export interface Proposal {
-  title: String
-  status: ProposalStatus
+  title: string
+  state: string
   endTime: number
 }
 
@@ -20,4 +15,12 @@ export interface Auction {
 export interface Nouns {
   auction: Auction
   proposals?: Proposal[]
+}
+
+export interface ProposalSubgraphEntity {
+  id: String
+  startBlock: string
+  endBlock: string
+  status: string
+  description: string
 }

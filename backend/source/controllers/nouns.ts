@@ -4,8 +4,13 @@ import { ethers } from 'ethers'
 import { ImageData, getNounData } from '@nouns/assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
-import { Nouns } from '../utils/types'
+import { Nouns, Proposal } from '../utils/types'
 import { AnkrProvider } from '@ethersproject/providers'
+import {
+  getProposalEndTimestamp,
+  getProposalState,
+  getProposalTitle
+} from '../utils/proposalHelpers'
 
 const { palette } = ImageData
 
@@ -34,7 +39,7 @@ const query = `
         startBlock,
         endBlock,
         status,
-        # description
+        description
       }
     }
   `
@@ -59,14 +64,31 @@ const getNounsData = async (
   const svgBase64 = Buffer.from(svgBinary).toString('base64')
   const image = `data:image/svg+xml;base64,${svgBase64}`
 
+  const blockNumber = await provider.getBlockNumber()
+
+  const proposals = Array<Proposal>()
+
+  for (const prop of data.proposals) {
+    const state = getProposalState(blockNumber, prop)
+
+    if (state) {
+      proposals.push({
+        title: getProposalTitle(prop),
+        state: state,
+        endTime: getProposalEndTimestamp(blockNumber, prop)
+      })
+    }
+  }
+
   let nounsData: Nouns = {
     auction: {
-      id: data.auctions[0].id,
+      id: parseInt(data.auctions[0].id),
       currentBid: ethers.utils.formatEther(data.auctions[0].amount),
       bidder: bidder,
-      endTime: data.auctions[0].endTime,
+      endTime: parseInt(data.auctions[0].endTime) * 1000,
       image: image
-    }
+    },
+    proposals: proposals
   }
   return res.status(200).json(nounsData)
 }
