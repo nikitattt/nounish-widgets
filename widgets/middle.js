@@ -76,7 +76,7 @@ idBar.imageSize = new Size(idBarWidth, idBarHeight)
 
 // ----- countdown -----
 
-auctionSectionW.addSpacer(12)
+auctionSectionW.addSpacer(20)
 
 const countdownW = auctionSectionW.addStack()
 countdownW.layoutVertically()
@@ -97,13 +97,13 @@ timeLeft.font = Font.heavySystemFont(18)
 const dateFormatter = new DateFormatter()
 dateFormatter.useShortTimeStyle()
 const nowTime = dateFormatter.string(new Date())
-const lastUpdated = countdownW.addText(`Last Updated: ${nowTime}`)
+const lastUpdated = countdownW.addText(`Updated: ${nowTime}`)
 lastUpdated.textColor = pickByState(coolLightText, warmLightText)
-lastUpdated.font = Font.boldSystemFont(8)
+lastUpdated.font = Font.semiboldSystemFont(10)
 
 // ----- bid -----
 
-auctionSectionW.addSpacer(12)
+auctionSectionW.addSpacer(32)
 
 const bidW = auctionSectionW.addStack()
 bidW.layoutVertically()
@@ -119,7 +119,7 @@ bidTxt.font = Font.heavySystemFont(18)
 
 const bidderTxt = bidW.addText(`by: ${bidder}`)
 bidderTxt.textColor = pickByState(coolLightText, warmLightText)
-bidderTxt.font = Font.boldSystemFont(8)
+bidderTxt.font = Font.semiboldSystemFont(10)
 
 // ----- - -----
 
