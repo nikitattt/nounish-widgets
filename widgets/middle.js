@@ -65,24 +65,24 @@ const imageObj = Image.fromData(Data.fromBase64String(image))
 const nounImage = nounW.addImage(imageObj)
 nounImage.imageSize = new Size(42, 42)
 
-// const idBar = nounW.addImage(
-//     getIdBar(
-//         auctionId,
-//         pickByState(coolDarkText, warmDarkText),
-//         pickByState(coolAccent, warmAccent)
-//     )
-// )
+const idBar = nounW.addImage(
+    getIdBar(
+        auctionId,
+        pickByState(coolDarkText, warmDarkText),
+        pickByState(coolAccent, warmAccent)
+    )
+)
 // idBar.imageSize = new Size(idBarWidth, idBarHeight)
-const idBar = nounW.addStack()
-idBar.backgroundColor = pickByState(coolAccent, warmAccent)
-idBar.cornerRadius = 3
+// const idBar = nounW.addStack()
+// idBar.backgroundColor = pickByState(coolAccent, warmAccent)
+// idBar.cornerRadius = 3
 // idBar.borderWidth = 2
 // idBar.borderColor = barBorderColor
-idBar.setPadding(2, 6, 2, 2)
+// idBar.setPadding(2, 6, 2, 6)
 
-const idBarTxt = idBar.addText(`${id}`)
-idBarTxt.textColor = pickByState(coolDarkText, warmDarkText)
-idBarTxt.font = Font.heavySystemFont(8)
+// const idBarTxt = idBar.addText(`${id}`)
+// idBarTxt.textColor = pickByState(coolDarkText, warmDarkText)
+// idBarTxt.font = Font.heavySystemFont(8)
 
 // ----- countdown -----
 
@@ -282,5 +282,26 @@ function createLine(width, height, color) {
     context.addPath(path)
     context.setFillColor(color)
     context.fillPath()
+    return context.getImage()
+}
+
+function getIdBar(id, color, accent) {
+    const context = new DrawContext()
+    context.size = new Size(idBarWidth, idBarHeight)
+    context.opaque = false
+    context.respectScreenScale = true
+
+    context.setFillColor(accent)
+    const path = new Path()
+    path.addRoundedRect(new Rect(2, 0, idBarWidth - 2, idBarHeight), 5, 4)
+    context.addPath(path)
+    context.fillPath()
+
+    context.setTextAlignedCenter()
+    context.setFont(Font.heavySystemFont(8))
+    context.setTextColor(color)
+
+    context.drawTextInRect(id, new Rect(2, 1, idBarWidth - 2, idBarHeight))
+
     return context.getImage()
 }
