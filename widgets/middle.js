@@ -76,15 +76,17 @@ idBar.imageSize = new Size(idBarWidth, idBarHeight)
 
 // ----- countdown -----
 
+auctionSectionW.addSpacer(12)
+
 const countdownW = auctionSectionW.addStack()
 countdownW.layoutVertically()
+countdownW.addSpacer(4)
 
 const auctionEndsIn = countdownW.addText('Auction ends in')
 auctionEndsIn.textColor = pickByState(coolDarkText, warmDarkText)
 auctionEndsIn.font = Font.systemFont(12)
 
 const now = new Date().valueOf()
-const totalTime = endTime - startTime
 const timeToGo = endTime - now / 1000
 
 const timeToGoText = secondsToDhms(timeToGo)
@@ -94,8 +96,8 @@ timeLeft.font = Font.heavySystemFont(18)
 
 const dateFormatter = new DateFormatter()
 dateFormatter.useShortTimeStyle()
-const nowTime = dateFormatter.string(Date())
-const lastUpdated = countdownW.addText(nowTime)
+const nowTime = dateFormatter.string(new Date())
+const lastUpdated = countdownW.addText(`Last Updated: ${nowTime}`)
 lastUpdated.textColor = pickByState(coolLightText, warmLightText)
 lastUpdated.font = Font.boldSystemFont(8)
 
