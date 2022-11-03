@@ -61,7 +61,7 @@ const idBarHeight = 16
 const nounW = auctionSectionW.addStack()
 nounW.layoutVertically()
 
-const imageObj = Image.fromData(image)
+const imageObj = Image.fromData(Data.fromBase64String(image))
 const nounImage = nounW.addImage(imageObj)
 nounImage.imageSize = new Size(42, 42)
 
@@ -76,13 +76,13 @@ nounImage.imageSize = new Size(42, 42)
 const idBar = nounW.addStack()
 idBar.backgroundColor = pickByState(coolAccent, warmAccent)
 idBar.cornerRadius = 3
-idBar.borderWidth = 2
-idBar.borderColor = barBorderColor
-idBar.setPadding(3, 6, 2, 3)
+// idBar.borderWidth = 2
+// idBar.borderColor = barBorderColor
+idBar.setPadding(2, 6, 2, 2)
 
-const idBarTxt = idBar.addText(id)
-idBarTxt.textColor = barTextColor
-idBarTxt.font = Font.boldSystemFont(8)
+const idBarTxt = idBar.addText(`${id}`)
+idBarTxt.textColor = pickByState(coolDarkText, warmDarkText)
+idBarTxt.font = Font.heavySystemFont(8)
 
 // ----- countdown -----
 

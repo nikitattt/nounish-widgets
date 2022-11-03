@@ -11,6 +11,7 @@ import {
   getProposalState,
   getProposalTitle
 } from '../utils/proposalHelpers'
+import sharp from 'sharp'
 
 const { palette } = ImageData
 
@@ -61,8 +62,9 @@ const getNounsData = async (
 
   const { parts, background } = getNounData(data.auctions[0].noun.seed)
   const svgBinary = buildSVG(parts, palette, background)
-  const svgBase64 = Buffer.from(svgBinary).toString('base64')
-  const image = `data:image/svg+xml;base64,${svgBase64}`
+  const svgBuffer = Buffer.from(svgBinary)
+  const pngBuffer = await sharp(svgBuffer).resize(100).png().toBuffer()
+  const image = pngBuffer.toString('base64')
 
   const blockNumber = await provider.getBlockNumber()
 
