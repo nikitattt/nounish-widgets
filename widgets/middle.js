@@ -20,6 +20,9 @@ const warmDarkText = new Color('#221b1a')
 const warmLightText = new Color('#8f7e7c')
 const warmAccent = new Color('#f9f1f1')
 
+const red = new Color('#C24949')
+const redSemiTransparent = new Color('#C24949', 0.4)
+
 const widgetUrl = 'https://nouns.wtf/'
 
 const data = await loadData()
@@ -217,6 +220,13 @@ function displayProposal(proposal) {
     // }
 
     //TODO: ? do not show pending props
+
+    const timeLeft = proposal.endTime - new Date().valueOf()
+
+    if (timeLeft <= 43200000) {
+        barTextColor = red
+        barBorderColor = redSemiTransparent
+    }
 
     const deadline = getTime(time)
     const title = proposal.title
