@@ -62,7 +62,7 @@ const getNounsData = async (
   const { parts, background } = getNounData(data.auctions[0].noun.seed)
   const svgBinary = buildSVG(parts, palette, background)
   const svgBase64 = Buffer.from(svgBinary).toString('base64')
-  const image = svgBase64
+  const image = `data:image/svg+xml;base64,${svgBase64}`
 
   const blockNumber = await provider.getBlockNumber()
 
