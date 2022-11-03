@@ -46,7 +46,7 @@ w.url = widgetUrl
 const proposalsSectionTitleW = w.addStack()
 proposalsSectionTitleW.centerAlignContent()
 
-const propsSectionTitle = communityNameW.addText('Active Proposals')
+const propsSectionTitle = proposalsSectionTitleW.addText('Active Proposals')
 propsSectionTitle.textColor = pickByState(coolLightText, warmLightText)
 propsSectionTitle.font = Font.systemFont(12)
 
@@ -210,9 +210,8 @@ async function loadData() {
     req.method = 'GET'
     req.headers = { 'Content-Type': 'application/json' }
     const res = await req.loadJSON()
-    const data = res.data
 
-    return data
+    return res
 }
 
 function getTime(time) {
