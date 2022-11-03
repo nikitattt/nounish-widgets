@@ -167,6 +167,7 @@ function displayProposal(proposal) {
     const titleText = titleW.addText(title)
     titleText.textColor = pickByState(coolDarkText, warmDarkText)
     titleText.font = Font.semiboldSystemFont(12)
+    titleText.lineLimit = 1
 
     // const infoW = w.addStack()
 
