@@ -103,6 +103,25 @@ lastUpdated.font = Font.boldSystemFont(8)
 
 // ----- bid -----
 
+auctionSectionW.addSpacer(12)
+
+const bidW = auctionSectionW.addStack()
+bidW.layoutVertically()
+bidW.addSpacer(4)
+
+const currentBidTxt = bidW.addText('Current Bid')
+currentBidTxt.textColor = pickByState(coolDarkText, warmDarkText)
+currentBidTxt.font = Font.systemFont(12)
+
+const bidTxt = bidW.addText(`${currentBid} Ξ`)
+bidTxt.textColor = pickByState(coolDarkText, warmDarkText)
+bidTxt.font = Font.heavySystemFont(18)
+
+const bidderTxt = bidW.addText(`by: ${bidder}`)
+bidderTxt.textColor = pickByState(coolLightText, warmLightText)
+bidderTxt.font = Font.boldSystemFont(8)
+
+// ----- - -----
 
 w.addSpacer(4)
 
