@@ -34,6 +34,11 @@ const widgetUrl = 'https://nouns.wtf/'
 
 const data = await loadData()
 
+const id = data.auction.id
+const bidder = data.auction.bidder
+const currentBid = data.auction.currentBid
+const endTime = data.auction.endTime
+const image = data.auction.image
 const seed = data.auction.seed
 
 // const communityName = data.name
@@ -42,6 +47,48 @@ const seed = data.auction.seed
 const w = new ListWidget()
 w.backgroundColor = pickByState(coolBackground, warmBackground)
 w.url = widgetUrl
+
+// ----- AUCTION SECTION -----
+
+const auctionSectionW = w.addStack()
+// auctionSectionW.centerAlignContent()
+
+// ----- noun -----
+
+const idBarWidth = 42
+const idBarHeight = 16
+
+const nounW = auctionSectionW.addStack()
+nounW.layoutVertically()
+
+const imageObj = Image.fromData(image)
+const nounImage = nounW.addImage(imageObj)
+nounImage.imageSize = new Size(42, 42)
+
+// const idBar = nounW.addImage(
+//     getIdBar(
+//         auctionId,
+//         pickByState(coolDarkText, warmDarkText),
+//         pickByState(coolAccent, warmAccent)
+//     )
+// )
+// idBar.imageSize = new Size(idBarWidth, idBarHeight)
+const idBar = nounW.addStack()
+idBar.backgroundColor = pickByState(coolAccent, warmAccent)
+idBar.cornerRadius = 3
+idBar.borderWidth = 2
+idBar.borderColor = barBorderColor
+idBar.setPadding(3, 6, 2, 3)
+
+const idBarTxt = idBar.addText(id)
+idBarTxt.textColor = barTextColor
+idBarTxt.font = Font.boldSystemFont(8)
+
+// ----- countdown -----
+
+// ----- bid -----
+
+// ----- PROPOSALS SECTION -----
 
 const proposalsSectionTitleW = w.addStack()
 proposalsSectionTitleW.centerAlignContent()
