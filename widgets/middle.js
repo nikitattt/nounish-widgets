@@ -123,6 +123,7 @@ bidTxt.font = Font.heavySystemFont(18)
 const bidderTxt = bidW.addText(`by: ${bidder}`)
 bidderTxt.textColor = pickByState(coolLightText, warmLightText)
 bidderTxt.font = Font.semiboldSystemFont(10)
+bidderTxt.lineLimit = 1
 
 // ----- - -----
 
