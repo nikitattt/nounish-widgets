@@ -86,7 +86,8 @@ const getNounsData = async (
       currentBid: ethers.utils.formatEther(data.auctions[0].amount),
       bidder: bidder,
       endTime: parseInt(data.auctions[0].endTime) * 1000,
-      image: image
+      image: image,
+      seed: data.auctions[0].noun.seed
     },
     proposals: proposals
   }
