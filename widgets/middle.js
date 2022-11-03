@@ -8,16 +8,6 @@
  * Enjoy!
  */
 
-const white = new Color('#FFFFFF')
-const black = new Color('#000000')
-const purple = new Color('#8A2BE2')
-const purpleSemiTransparent = new Color('#8A2BE2', 0.25)
-const green = new Color('#50BA9A')
-const greenSemiTransparent = new Color('#50BA9A', 0.4)
-const greyOne = new Color('#BBBBBB')
-const greyTwo = new Color('#666666')
-const borderLight = new Color('#000000', 0.14)
-
 const coolBackground = new Color('#d5d7e0')
 const coolBorder = new Color('#bcc0d0')
 const coolDarkText = new Color('#151c3b')
@@ -56,7 +46,7 @@ const auctionSectionW = w.addStack()
 // ----- noun -----
 
 const idBarWidth = 42
-const idBarHeight = 16
+const idBarHeight = 12
 
 const nounW = auctionSectionW.addStack()
 nounW.layoutVertically()
@@ -67,12 +57,12 @@ nounImage.imageSize = new Size(42, 42)
 
 const idBar = nounW.addImage(
     getIdBar(
-        auctionId,
+        `${id}`,
         pickByState(coolDarkText, warmDarkText),
         pickByState(coolAccent, warmAccent)
     )
 )
-// idBar.imageSize = new Size(idBarWidth, idBarHeight)
+idBar.imageSize = new Size(idBarWidth, idBarHeight)
 // const idBar = nounW.addStack()
 // idBar.backgroundColor = pickByState(coolAccent, warmAccent)
 // idBar.cornerRadius = 3
@@ -88,6 +78,9 @@ const idBar = nounW.addImage(
 
 // ----- bid -----
 
+
+w.addSpacer(4)
+
 // ----- PROPOSALS SECTION -----
 
 const proposalsSectionTitleW = w.addStack()
@@ -100,8 +93,6 @@ propsSectionTitle.font = Font.systemFont(12)
 proposalsSectionTitleW.addSpacer(6)
 
 proposalsSectionTitleW.addImage(createLine(600, 2, pickByState(coolBorder, warmBorder)))
-
-w.addSpacer(4)
 
 // const now = Date.now()
 // const openAndVoting = []
