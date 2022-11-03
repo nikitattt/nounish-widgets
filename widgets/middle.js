@@ -122,12 +122,14 @@ function displayProposal(proposal) {
     let barBorderColor
     let barText
     let time
+    let deadlinePrefix
 
     if (proposal.state === "ACTIVE") {
         barTextColor = pickByState(coolLightText, warmLightText)
         barBorderColor = pickByState(coolBorder, warmBorder)
         barText = 'Active'
         time = new Date(proposal.endTime)
+        deadlinePrefix = "Ends "
     }
     // else if (auction.status === "Voting") {
     //     barTextColor = purple
@@ -140,6 +142,8 @@ function displayProposal(proposal) {
     //     barText = 'Not Started'
     //     time = new Date(auction.startTime)
     // }
+
+    //TODO: ? do not show pending props
 
     const deadline = getTime(time)
     const title = proposal.title
@@ -154,7 +158,7 @@ function displayProposal(proposal) {
     barW.setPadding(2, 3, 2, 3)
 
     // const barTxt = barW.addText(barText)
-    const barTxt = barW.addText(deadline)
+    const barTxt = barW.addText(deadlinePrefix + deadline)
     barTxt.textColor = barTextColor
     barTxt.font = Font.boldSystemFont(8)
 
