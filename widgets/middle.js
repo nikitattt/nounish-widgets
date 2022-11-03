@@ -111,7 +111,7 @@ let totalDisplayed = 0
 
 for (const proposal of data.proposals) {
     if (totalDisplayed > 2) continue
-    doSpacing()
+    w.addSpacer(4)
     displayProposal(proposal)
     totalDisplayed++
 }
@@ -144,15 +144,6 @@ w.presentMedium()
 
 function pickByState(cool, warm) {
     return seed.background === '0' ? cool : warm
-}
-
-function doSpacing() {
-    if (!firstDone) {
-        firstDone = true
-        w.addSpacer(4)
-    } else {
-        w.addSpacer(6)
-    }
 }
 
 function displayProposal(proposal) {
