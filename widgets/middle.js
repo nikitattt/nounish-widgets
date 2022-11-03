@@ -76,6 +76,29 @@ idBar.imageSize = new Size(idBarWidth, idBarHeight)
 
 // ----- countdown -----
 
+const countdownW = auctionSectionW.addStack()
+countdownW.layoutVertically()
+
+const auctionEndsIn = countdownW.addText('Auction ends in')
+auctionEndsIn.textColor = pickByState(coolDarkText, warmDarkText)
+auctionEndsIn.font = Font.systemFont(12)
+
+const now = new Date().valueOf()
+const totalTime = endTime - startTime
+const timeToGo = endTime - now / 1000
+
+const timeToGoText = secondsToDhms(timeToGo)
+const timeLeft = countdownW.addText(timeToGoText)
+timeLeft.textColor = pickByState(coolDarkText, warmDarkText)
+timeLeft.font = Font.heavySystemFont(18)
+
+const dateFormatter = new DateFormatter()
+dateFormatter.useShortTimeStyle()
+const nowTime = dateFormatter.string(Date())
+const lastUpdated = countdownW.addText(nowTime)
+lastUpdated.textColor = pickByState(coolLightText, warmLightText)
+lastUpdated.font = Font.boldSystemFont(8)
+
 // ----- bid -----
 
 
@@ -286,4 +309,18 @@ function getIdBar(id, color, accent) {
     context.drawTextInRect(id, new Rect(2, 1, idBarWidth - 2, idBarHeight))
 
     return context.getImage()
+}
+
+function secondsToDhms(seconds) {
+    seconds = Number(seconds)
+
+    var h = Math.floor((seconds % (3600 * 24)) / 3600)
+    var m = Math.floor((seconds % 3600) / 60)
+    var s = Math.floor(seconds % 60)
+
+    var hDisplay = h > 0 ? h + 'h ' : ''
+    var mDisplay = m > 0 ? m + 'm ' : ''
+    var sDisplay = s > 0 ? s + 's' : ''
+
+    return hDisplay + mDisplay + sDisplay
 }
