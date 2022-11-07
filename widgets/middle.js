@@ -207,7 +207,7 @@ async function loadImage(imageUrl) {
 }
 
 async function loadData() {
-    const url = 'https://nounish-widgets-production.up.railway.app/nouns'
+    const url = 'https://api.nounswidgets.wtf/nouns'
     const req = new Request(url)
     req.method = 'GET'
     req.headers = { 'Content-Type': 'application/json' }
