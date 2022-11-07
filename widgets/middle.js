@@ -207,6 +207,8 @@ function displayProposal(proposal) {
         barText = 'Active'
         time = new Date(proposal.endTime)
         deadlinePrefix = "Ends "
+    } else {
+        return
     }
     // else if (auction.status === "Voting") {
     //     barTextColor = purple
