@@ -90,7 +90,7 @@ auctionEndsIn.textColor = pickByState(coolDarkText, warmDarkText)
 auctionEndsIn.font = Font.systemFont(12)
 
 const now = new Date().valueOf()
-const timeToGo = endTime - now / 1000
+const timeToGo = endTime - now
 
 const timeToGoText = secondsToDhms(timeToGo)
 const timeLeft = countdownW.addText(timeToGoText)
