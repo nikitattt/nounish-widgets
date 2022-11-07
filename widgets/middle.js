@@ -3,7 +3,7 @@
  * Twitter: @iamng_eth
  *
  * Version: 0.1.0
- * Last Update: 03.11.2022
+ * Last Update: 07.11.2022
  *
  * Enjoy!
  */
@@ -34,9 +34,6 @@ const endTime = data.auction.endTime
 const image = data.auction.image
 const seed = data.auction.seed
 
-// const communityName = data.name
-// const communityAuctions = data.auctions
-
 const w = new ListWidget()
 w.backgroundColor = pickByState(coolBackground, warmBackground)
 w.url = widgetUrl
@@ -44,7 +41,6 @@ w.url = widgetUrl
 // ----- AUCTION SECTION -----
 
 const auctionSectionW = w.addStack()
-// auctionSectionW.centerAlignContent()
 
 // ----- noun -----
 
@@ -66,16 +62,6 @@ const idBar = nounW.addImage(
     )
 )
 idBar.imageSize = new Size(idBarWidth, idBarHeight)
-// const idBar = nounW.addStack()
-// idBar.backgroundColor = pickByState(coolAccent, warmAccent)
-// idBar.cornerRadius = 3
-// idBar.borderWidth = 2
-// idBar.borderColor = barBorderColor
-// idBar.setPadding(2, 6, 2, 6)
-
-// const idBarTxt = idBar.addText(`${id}`)
-// idBarTxt.textColor = pickByState(coolDarkText, warmDarkText)
-// idBarTxt.font = Font.heavySystemFont(8)
 
 // ----- countdown -----
 
@@ -142,18 +128,6 @@ proposalsSectionTitleW.addSpacer(6)
 
 proposalsSectionTitleW.addImage(createLine(600, 2, pickByState(coolBorder, warmBorder)))
 
-// const now = Date.now()
-// const openAndVoting = []
-// const upcoming = []
-
-// for (const auction of communityAuctions) {
-//     if (auction.status === "Open" || auction.status === "Voting") {
-//         openAndVoting.push(auction)
-//     } else if (auction.status === "Upcoming") {
-//         upcoming.push(auction)
-//     }
-// }
-
 let firstDone = false
 let totalDisplayed = 0
 
@@ -163,22 +137,6 @@ for (const proposal of data.proposals) {
     displayProposal(proposal)
     totalDisplayed++
 }
-
-// if (totalDisplayed <= 2) {
-//     for (const auction of upcoming) {
-//         if (totalDisplayed > 2) continue
-//         doSpacing()
-//         displayAuction(auction)
-//         totalDisplayed++
-//     }
-// }
-
-// if (totalDisplayed == 0) {
-//     w.addSpacer(6)
-//     const noRounds = w.addText('No Active or Upcoming rounds')
-//     noRounds.textColor = greyOne
-//     noRounds.font = Font.systemFont(12)
-// }
 
 w.addSpacer(null)
 
@@ -210,19 +168,6 @@ function displayProposal(proposal) {
     } else {
         return
     }
-    // else if (auction.status === "Voting") {
-    //     barTextColor = purple
-    //     barBorderColor = purpleSemiTransparent
-    //     barText = 'Voting'
-    //     time = new Date(auction.votingEndTime)
-    // } else if (auction.status === "Upcoming") {
-    //     barTextColor = greyTwo
-    //     barBorderColor = borderLight
-    //     barText = 'Not Started'
-    //     time = new Date(auction.startTime)
-    // }
-
-    //TODO: ? do not show pending props
 
     const timeLeft = proposal.endTime - new Date().valueOf()
 
@@ -243,7 +188,6 @@ function displayProposal(proposal) {
     barW.borderColor = barBorderColor
     barW.setPadding(2, 3, 2, 3)
 
-    // const barTxt = barW.addText(barText)
     const barTxt = barW.addText(deadlinePrefix + deadline)
     barTxt.textColor = barTextColor
     barTxt.font = Font.boldSystemFont(8)
@@ -254,39 +198,6 @@ function displayProposal(proposal) {
     titleText.textColor = pickByState(coolDarkText, warmDarkText)
     titleText.font = Font.semiboldSystemFont(12)
     titleText.lineLimit = 1
-
-    // const infoW = w.addStack()
-
-    // const fundingInfoText = infoW.addText('Funding ')
-    // fundingInfoText.textColor = greyOne
-    // fundingInfoText.font = Font.mediumSystemFont(10)
-
-    // const fundingText = infoW.addText(funding)
-    // fundingText.textColor = black
-    // fundingText.font = Font.mediumSystemFont(10)
-
-    // infoW.addSpacer(16)
-
-    // const deadlineInfoTxt = auction.status === "Upcoming" ? 'Starts ' : 'Deadline '
-    // const deadlineInfoText = infoW.addText(deadlineInfoTxt)
-    // deadlineInfoText.textColor = greyOne
-    // deadlineInfoText.font = Font.mediumSystemFont(10)
-
-    // const deadlineText = infoW.addText(deadline)
-    // deadlineText.textColor = black
-    // deadlineText.font = Font.mediumSystemFont(10)
-
-    // if (auction.status !== "Upcoming") {
-    //     infoW.addSpacer(16)
-
-    //     const proposalsInfoText = infoW.addText('Proposals ')
-    //     proposalsInfoText.textColor = greyOne
-    //     proposalsInfoText.font = Font.mediumSystemFont(10)
-
-    //     const proposalsText = infoW.addText(`${proposals}`)
-    //     proposalsText.textColor = black
-    //     proposalsText.font = Font.mediumSystemFont(10)
-    // }
 }
 
 async function loadImage(imageUrl) {
