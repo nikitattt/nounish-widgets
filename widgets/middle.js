@@ -49,7 +49,7 @@ const auctionSectionW = w.addStack()
 // ----- noun -----
 
 const idBarWidth = 42
-const idBarHeight = 12
+const idBarHeight = 14
 
 const nounW = auctionSectionW.addStack()
 nounW.layoutVertically()
@@ -337,7 +337,7 @@ function getIdBar(id, color, accent) {
     context.fillPath()
 
     context.setTextAlignedCenter()
-    context.setFont(Font.heavySystemFont(8))
+    context.setFont(Font.boldSystemFont(10))
     context.setTextColor(color)
 
     context.drawTextInRect(id, new Rect(2, 1, idBarWidth - 2, idBarHeight))
