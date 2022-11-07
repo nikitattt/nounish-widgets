@@ -92,7 +92,7 @@ auctionEndsIn.font = Font.systemFont(12)
 const now = new Date().valueOf()
 const timeToGo = endTime - now
 
-const timeToGoText = secondsToDhms(timeToGo)
+const timeToGoText = secondsToDhms(timeToGo / 1000)
 const timeLeft = countdownW.addText(timeToGoText)
 timeLeft.textColor = pickByState(coolDarkText, warmDarkText)
 timeLeft.font = Font.heavySystemFont(18)
