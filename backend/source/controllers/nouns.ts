@@ -52,13 +52,20 @@ const getNounsData = async (
 ) => {
   // get the id from the req
   // let id: string = req.params.id;
+  const provider = new AnkrProvider()
 
   let result: AxiosResponse = await axios.post(url, { query: query })
   const data = result.data.data
 
-  const provider = new AnkrProvider()
-  const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
-  const bidder = ens ? shortENS(ens) : shortAddress(data.auctions[0].bidder.id)
+  let bidder = '-'
+  let amount = '0'
+
+  if (data.auctions[0].bidder && data.auctions[0].amount) {
+    const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
+    bidder = ens ? shortENS(ens) : shortAddress(data.auctions[0].bidder.id)
+
+    amount = data.auctions[0].amount
+  }
 
   const { parts, background } = getNounData(data.auctions[0].noun.seed)
   const svgBinary = buildSVG(parts, palette, background)
@@ -85,7 +92,7 @@ const getNounsData = async (
   let nounsData: Nouns = {
     auction: {
       id: parseInt(data.auctions[0].id),
-      currentBid: ethers.utils.formatEther(data.auctions[0].amount),
+      currentBid: ethers.utils.formatEther(amount),
       bidder: bidder,
       endTime: parseInt(data.auctions[0].endTime) * 1000,
       image: image,
