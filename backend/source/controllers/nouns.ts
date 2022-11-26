@@ -84,7 +84,7 @@ const getNounsData = async (
       proposals.push({
         title: getProposalTitle(prop),
         state: state,
-        endTime: getProposalEndTimestamp(blockNumber, prop)
+        endTime: getProposalEndTimestamp(blockNumber, state, prop)
       })
     }
   }
