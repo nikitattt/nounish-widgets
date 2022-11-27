@@ -119,7 +119,7 @@ w.addSpacer(4)
 
 // ----- PROPOSALS SECTION -----
 
-const noProposals = data.proposals.length() === 0
+const noProposals = data.proposals.length === 0
 
 const proposalsSectionTitleW = w.addStack()
 proposalsSectionTitleW.centerAlignContent()
@@ -136,10 +136,10 @@ let firstDone = false
 let totalDisplayed = 0
 
 if (noProposals) {
-    w.addSpacer(6)
-    const noProps = w.addText('No Active Proposals')
-    noProps.textColor = warmBorder
-    noProps.font = Font.systemFont(12)
+    w.addSpacer(4)
+    const noProps = w.addText('All done. Waiting for more props ⌐◨-◨')
+    noProps.textColor = warmDarkText
+    noProps.font = Font.mediumSystemFont(12)
 } else {
     for (const proposal of data.proposals) {
         if (totalDisplayed > 2) continue
