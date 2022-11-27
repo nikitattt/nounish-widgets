@@ -40,6 +40,8 @@ w.url = widgetUrl
 
 // ----- AUCTION SECTION -----
 
+const activeAuction = endTime > new Date().valueOf()
+
 const auctionSectionW = w.addStack()
 
 // ----- noun -----
@@ -117,6 +119,8 @@ w.addSpacer(4)
 
 // ----- PROPOSALS SECTION -----
 
+const noProposals = data.proposals.length() === 0
+
 const proposalsSectionTitleW = w.addStack()
 proposalsSectionTitleW.centerAlignContent()
 
@@ -131,11 +135,18 @@ proposalsSectionTitleW.addImage(createLine(600, 2, pickByState(coolBorder, warmB
 let firstDone = false
 let totalDisplayed = 0
 
-for (const proposal of data.proposals) {
-    if (totalDisplayed > 2) continue
-    w.addSpacer(4)
-    displayProposal(proposal)
-    totalDisplayed++
+if (noProposals) {
+    w.addSpacer(6)
+    const noProps = w.addText('No Active Proposals')
+    noProps.textColor = warmBorder
+    noProps.font = Font.systemFont(12)
+} else {
+    for (const proposal of data.proposals) {
+        if (totalDisplayed > 2) continue
+        w.addSpacer(4)
+        displayProposal(proposal)
+        totalDisplayed++
+    }
 }
 
 w.addSpacer(null)
