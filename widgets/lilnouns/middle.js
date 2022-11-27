@@ -73,15 +73,26 @@ const countdownW = auctionSectionW.addStack()
 countdownW.layoutVertically()
 countdownW.addSpacer(4)
 
-const auctionEndsIn = countdownW.addText('Auction ends in')
+let countdownTitleTxt
+let countdownTxt
+
+if (activeAuction) {
+    countdownTitleTxt = 'Auction ends in'
+
+    const now = new Date().valueOf()
+    const timeToGo = endTime - now
+
+    countdownTxt = secondsToDhms(timeToGo / 1000)
+} else {
+    countdownTitleTxt = 'Auction Ended!'
+    countdownTxt = `Settle ⌐◨-◨`
+}
+
+const auctionEndsIn = countdownW.addText(countdownTitleTxt)
 auctionEndsIn.textColor = pickByState(coolDarkText, warmDarkText)
 auctionEndsIn.font = Font.systemFont(12)
 
-const now = new Date().valueOf()
-const timeToGo = endTime - now
-
-const timeToGoText = secondsToDhms(timeToGo / 1000)
-const timeLeft = countdownW.addText(timeToGoText)
+const timeLeft = countdownW.addText(countdownTxt)
 timeLeft.textColor = pickByState(coolDarkText, warmDarkText)
 timeLeft.font = Font.heavySystemFont(18)
 
