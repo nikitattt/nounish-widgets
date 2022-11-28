@@ -24,6 +24,7 @@ const red = new Color('#C24949')
 const redSemiTransparent = new Color('#C24949', 0.4)
 
 const widgetUrl = 'https://lilnouns.wtf/'
+const auctionDoneUrl = 'https://lilblockparty.wtf/'
 
 const data = await loadData()
 
@@ -86,6 +87,8 @@ if (activeAuction) {
 } else {
     countdownTitleTxt = 'Auction Ended!'
     countdownTxt = `Settle ⌐◨-◨`
+
+    w.url = auctionDoneUrl
 }
 
 const auctionEndsIn = countdownW.addText(countdownTitleTxt)
