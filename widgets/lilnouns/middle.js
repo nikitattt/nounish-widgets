@@ -111,7 +111,15 @@ const bidW = auctionSectionW.addStack()
 bidW.layoutVertically()
 bidW.addSpacer(4)
 
-const currentBidTxt = bidW.addText('Current Bid')
+let bidTitleTxt
+
+if (activeAuction) {
+    bidTitleTxt = 'Current Bid'
+} else {
+    bidTitleTxt = 'Winning Bid'
+}
+
+const currentBidTxt = bidW.addText(bidTitleTxt)
 currentBidTxt.textColor = pickByState(coolDarkText, warmDarkText)
 currentBidTxt.font = Font.systemFont(12)
 
