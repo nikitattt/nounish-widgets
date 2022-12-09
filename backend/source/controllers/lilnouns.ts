@@ -81,9 +81,6 @@ const getLilNounsData = async (
   for (const prop of data.proposals) {
     const state = getProposalState(blockNumber, prop)
 
-    console.log(getProposalTitle(prop))
-    console.log(state)
-
     if (state) {
       proposals.push({
         title: getProposalTitle(prop),
