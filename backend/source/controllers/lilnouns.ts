@@ -58,8 +58,8 @@ const getLilNounsData = async (
   let result: AxiosResponse = await axios.post(url, { query: query })
   const data = result.data.data
 
-  let bidder = '-'
-  let amount = '0'
+  let bidder = '0x00...0000'
+  let amount = '0.0'
 
   if (data.auctions[0].bidder && data.auctions[0].amount) {
     const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
