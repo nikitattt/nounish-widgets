@@ -59,7 +59,7 @@ const getLilNounsData = async (
   const data = result.data.data
 
   let bidder = '0x00...0000'
-  let amount = '0.0'
+  let amount = '0'
 
   if (data.auctions[0].bidder && data.auctions[0].amount) {
     const ens = await provider.lookupAddress(data.auctions[0].bidder.id)
