@@ -22,16 +22,14 @@ w.url = widgetUrl
 const nounW = w.addStack()
 nounW.layoutHorizontally()
 
-const nounTxt = nounW.addText(`Noun ${id}`)
-nounTxt.font = Font.boldSystemFont(16)
+nounW.addText(`Noun ${id}`)
 nounW.addSpacer(null)
 nounW.addText(`${currentBid} Ξ`)
 
 const auctionW = w.addStack()
 auctionW.layoutHorizontally()
 
-const endsTxt = auctionW.addText(`Ends In`)
-endsTxt.font = Font.boldSystemFont(16)
+auctionW.addText(`Ends In`)
 auctionW.addSpacer(null)
 const now = new Date().valueOf()
 const timeToGo = endTime - now
@@ -41,8 +39,7 @@ auctionW.addText(timeToGoText)
 const propsW = w.addStack()
 propsW.layoutHorizontally()
 
-const propsTxt = propsW.addText(`Active Props`)
-propsTxt.font = Font.boldSystemFont(16)
+propsW.addText(`Active Props`)
 propsW.addSpacer(null)
 propsW.addText(`${data.proposals.length}`)
 
