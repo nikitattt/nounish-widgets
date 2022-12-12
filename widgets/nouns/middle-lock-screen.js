@@ -54,14 +54,11 @@ w.presentMedium()
 */
 
 async function loadData() {
-    console.log('loading data')
     const url = 'https://api.nounswidgets.wtf/nouns'
     const req = new Request(url)
     req.method = 'GET'
     req.headers = { 'Content-Type': 'application/json' }
     const res = await req.loadJSON()
-
-    console.log(res)
 
     return res
 }
