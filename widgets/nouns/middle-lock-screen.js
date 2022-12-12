@@ -71,8 +71,8 @@ function secondsToDhms(seconds) {
     var s = Math.floor(seconds % 60)
 
     var hDisplay = h > 0 ? h + 'h ' : ''
-    var mDisplay = m > 0 ? m + h < 0 ? 'm' : 'm ' : ''
-    var sDisplay = h < 0 ? s > 0 ? s + 's' : '' : ''
+    var mDisplay = m > 0 ? m + 'm ' : ''
+    var sDisplay = s > 0 ? s + 's' : ''
 
     return hDisplay + mDisplay + sDisplay
 }
