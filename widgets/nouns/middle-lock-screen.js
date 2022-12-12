@@ -41,7 +41,7 @@ propsW.layoutHorizontally()
 
 propsW.addText(`Active Props`)
 propsW.addSpacer(null)
-propsW.addText(`${data.proposals.length}`)
+propsW.addText(`${numOfActiveProps(data.proposals)}`)
 
 w.addSpacer(null)
 
@@ -75,4 +75,16 @@ function secondsToDhms(seconds) {
     var sDisplay = s > 0 ? s + 's' : ''
 
     return hDisplay + mDisplay + sDisplay
+}
+
+function numOfActiveProps(proposals) {
+    let n = 0
+
+    proposals.forEach(e => {
+        if (e.state === "ACTIVE") {
+            n++
+        }
+    });
+
+    return n
 }
