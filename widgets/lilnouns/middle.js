@@ -3,7 +3,7 @@
  * Twitter: @iamng_eth
  *
  * Version: 0.1.0
- * Last Update: 12.12.2022
+ * Last Update: 24.12.2022
  *
  * Enjoy!
  */
@@ -24,7 +24,7 @@ const red = new Color('#C24949')
 const redSemiTransparent = new Color('#C24949', 0.4)
 
 const widgetUrl = 'https://lilnouns.wtf/'
-const auctionDoneUrl = 'https://lilblockparty.wtf/'
+const auctionDoneUrl = 'https://lilnouns.wtf/'
 
 const data = await loadData()
 
@@ -141,7 +141,7 @@ w.addSpacer(4)
 
 // ----- PROPOSALS SECTION -----
 
-const noProposals = data.proposals.length === 0
+const noProposals = numOfActiveProps(data.proposals.length) === 0
 
 const proposalsSectionTitleW = w.addStack()
 proposalsSectionTitleW.centerAlignContent()
@@ -301,4 +301,16 @@ function secondsToDhms(seconds) {
     var sDisplay = s > 0 ? s + 's' : ''
 
     return hDisplay + mDisplay + sDisplay
+}
+
+function numOfActiveProps(proposals) {
+    let n = 0
+
+    proposals.forEach(e => {
+        if (e.state === "ACTIVE") {
+            n++
+        }
+    });
+
+    return n
 }
