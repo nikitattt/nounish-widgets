@@ -141,7 +141,7 @@ w.addSpacer(4)
 
 // ----- PROPOSALS SECTION -----
 
-const noProposals = numOfActiveProps(data.proposals.length) === 0
+const noProposals = numOfActiveProps(data.proposals) === 0
 
 const proposalsSectionTitleW = w.addStack()
 proposalsSectionTitleW.centerAlignContent()
