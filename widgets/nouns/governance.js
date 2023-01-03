@@ -83,9 +83,14 @@ w.addImage(createLine(850, 2, pickByState(coolBorder, warmBorder)))
 
 let firstDone = false
 let totalDisplayed = 0
+let propsToDisplay = 3
+
+if (config.widgetFamily == "large") {
+    propsToDisplay = 6
+}
 
 for (const proposal of data.proposals) {
-    if (totalDisplayed > 2) continue
+    if (totalDisplayed >= propsToDisplay) continue
     w.addSpacer(4)
     displayProposal(proposal)
     totalDisplayed++
