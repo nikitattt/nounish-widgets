@@ -23,7 +23,7 @@ const warmAccent = new Color('#f9f1f1')
 const red = new Color('#C24949')
 const redSemiTransparent = new Color('#C24949', 0.4)
 
-const widgetUrl = 'https://nouns.wtf/vote'
+const widgetUrl = 'https://nouns.wtf/'
 
 const data = await loadData()
 
@@ -38,31 +38,95 @@ const w = new ListWidget()
 w.backgroundColor = pickByState(coolBackground, warmBackground)
 w.url = widgetUrl
 
-// ----- TITLE SECTION -----
+// ----- AUCTION SECTION -----
 
-const daoNameW = w.addStack()
-daoNameW.centerAlignContent()
+const auctionSectionW = w.addStack()
 
-const commName = daoNameW.addText(`Nouns DAO`)
-commName.textColor = pickByState(coolDarkText, warmDarkText)
-commName.font = Font.heavySystemFont(12)
+// ----- noun -----
 
-daoNameW.addSpacer(null)
+const idBarWidth = 42
+const idBarHeight = 14
 
-const activePropsTitle = daoNameW.addText(`Active 1`)
-activePropsTitle.textColor = pickByState(coolDarkText, warmDarkText)
-activePropsTitle.font = Font.systemFont(12)
+const nounW = auctionSectionW.addStack()
+nounW.layoutVertically()
 
-daoNameW.addSpacer(4)
+const imageObj = Image.fromData(Data.fromBase64String(image))
+const nounImage = nounW.addImage(imageObj)
+nounImage.imageSize = new Size(42, 42)
 
-const pendingPropsTitle = daoNameW.addText(`Pending 4`)
-pendingPropsTitle.textColor = pickByState(coolDarkText, warmDarkText)
-pendingPropsTitle.font = Font.systemFont(12)
+const idBar = nounW.addImage(
+    getIdBar(
+        `${id}`,
+        pickByState(coolDarkText, warmDarkText),
+        pickByState(coolAccent, warmAccent)
+    )
+)
+idBar.imageSize = new Size(idBarWidth, idBarHeight)
+
+// ----- countdown -----
+
+auctionSectionW.addSpacer(20)
+
+const countdownW = auctionSectionW.addStack()
+countdownW.layoutVertically()
+countdownW.addSpacer(4)
+
+const auctionEndsIn = countdownW.addText('Auction ends in')
+auctionEndsIn.textColor = pickByState(coolDarkText, warmDarkText)
+auctionEndsIn.font = Font.systemFont(12)
+
+const now = new Date().valueOf()
+const timeToGo = endTime - now
+
+const timeToGoText = secondsToDhms(timeToGo / 1000)
+const timeLeft = countdownW.addText(timeToGoText)
+timeLeft.textColor = pickByState(coolDarkText, warmDarkText)
+timeLeft.font = Font.heavySystemFont(18)
+
+const dateFormatter = new DateFormatter()
+dateFormatter.useShortTimeStyle()
+const nowTime = dateFormatter.string(new Date())
+const lastUpdated = countdownW.addText(`Updated: ${nowTime}`)
+lastUpdated.textColor = pickByState(coolLightText, warmLightText)
+lastUpdated.font = Font.semiboldSystemFont(10)
+
+// ----- bid -----
+
+auctionSectionW.addSpacer(32)
+
+const bidW = auctionSectionW.addStack()
+bidW.layoutVertically()
+bidW.addSpacer(4)
+
+const currentBidTxt = bidW.addText('Current Bid')
+currentBidTxt.textColor = pickByState(coolDarkText, warmDarkText)
+currentBidTxt.font = Font.systemFont(12)
+
+const bidTxt = bidW.addText(`${currentBid} Ξ`)
+bidTxt.textColor = pickByState(coolDarkText, warmDarkText)
+bidTxt.font = Font.heavySystemFont(18)
+
+const bidderTxt = bidW.addText(`by: ${bidder}`)
+bidderTxt.textColor = pickByState(coolLightText, warmLightText)
+bidderTxt.font = Font.semiboldSystemFont(10)
+bidderTxt.lineLimit = 1
+
+// ----- - -----
 
 w.addSpacer(4)
-w.addImage(createLine(850, 2, pickByState(coolBorder, warmBorder)))
 
 // ----- PROPOSALS SECTION -----
+
+const proposalsSectionTitleW = w.addStack()
+proposalsSectionTitleW.centerAlignContent()
+
+const propsSectionTitle = proposalsSectionTitleW.addText('Active Proposals')
+propsSectionTitle.textColor = pickByState(coolLightText, warmLightText)
+propsSectionTitle.font = Font.systemFont(12)
+
+proposalsSectionTitleW.addSpacer(6)
+
+proposalsSectionTitleW.addImage(createLine(600, 2, pickByState(coolBorder, warmBorder)))
 
 let firstDone = false
 let totalDisplayed = 0
@@ -101,12 +165,6 @@ function displayProposal(proposal) {
         barText = 'Active'
         time = new Date(proposal.endTime)
         deadlinePrefix = "Ends "
-    } else if (proposal.state === "PENDING") {
-        barTextColor = pickByState(coolLightText, warmLightText)
-        barBorderColor = pickByState(coolBorder, warmBorder)
-        barText = 'Pending'
-        time = new Date(proposal.endTime)
-        deadlinePrefix = "Starts "
     } else {
         return
     }
@@ -119,20 +177,12 @@ function displayProposal(proposal) {
     }
 
     const deadline = getTime(time)
-    // const title = proposal.title
-    // const id = 
+    const title = proposal.title
 
-    const titleText = w.addText(`${proposal.id} · ${proposal.title}`)
-    titleText.textColor = pickByState(coolDarkText, warmDarkText)
-    titleText.font = Font.semiboldSystemFont(12)
-    titleText.lineLimit = 1
+    const titleW = w.addStack()
+    titleW.centerAlignContent()
 
-    //  ----
-
-    const dataW = w.addStack()
-    dataW.centerAlignContent()
-
-    const barW = dataW.addStack()
+    const barW = titleW.addStack()
     barW.cornerRadius = 3
     barW.borderWidth = 2
     barW.borderColor = barBorderColor
@@ -142,12 +192,12 @@ function displayProposal(proposal) {
     barTxt.textColor = barTextColor
     barTxt.font = Font.boldSystemFont(8)
 
-    // titleW.addSpacer(4)
+    titleW.addSpacer(4)
 
-    // const titleText = titleW.addText(title)
-    // titleText.textColor = pickByState(coolDarkText, warmDarkText)
-    // titleText.font = Font.semiboldSystemFont(12)
-    // titleText.lineLimit = 1
+    const titleText = titleW.addText(title)
+    titleText.textColor = pickByState(coolDarkText, warmDarkText)
+    titleText.font = Font.semiboldSystemFont(12)
+    titleText.lineLimit = 1
 }
 
 async function loadImage(imageUrl) {
