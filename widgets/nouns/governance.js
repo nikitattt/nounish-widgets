@@ -149,22 +149,32 @@ function displayProposal(proposal) {
     const dataW = w.addStack()
     dataW.centerAlignContent()
 
-    const barW = dataW.addStack()
+    displayBar(dataW, barText, barTextColor, barBorderColor)
+    dataW.addSpacer(4)
+    displayBar(dataW, deadlinePrefix + deadline, barTextColor, barBorderColor)
+    dataW.addSpacer(4)
+    displayBar(dataW, `Quorum: ${proposal.quorum}`, barTextColor, barBorderColor)
+    dataW.addSpacer(4)
+
+    if (proposal.state === "ACTIVE") {
+        displayBar(dataW, proposal.votes.yes, barTextColor, barBorderColor)
+        dataW.addSpacer(4)
+        displayBar(dataW, proposal.votes.abstain, barTextColor, barBorderColor)
+        dataW.addSpacer(4)
+        displayBar(dataW, proposal.votes.no, barTextColor, barBorderColor)
+    }
+}
+
+function displayBar(widget, text, textColor, borderColor) {
+    const barW = widget.addStack()
     barW.cornerRadius = 3
     barW.borderWidth = 2
-    barW.borderColor = barBorderColor
+    barW.borderColor = borderColor
     barW.setPadding(2, 3, 2, 3)
 
-    const barTxt = barW.addText(deadlinePrefix + deadline)
-    barTxt.textColor = barTextColor
+    const barTxt = barW.addText(text)
+    barTxt.textColor = textColor
     barTxt.font = Font.boldSystemFont(8)
-
-    // titleW.addSpacer(4)
-
-    // const titleText = titleW.addText(title)
-    // titleText.textColor = pickByState(coolDarkText, warmDarkText)
-    // titleText.font = Font.semiboldSystemFont(12)
-    // titleText.lineLimit = 1
 }
 
 async function loadImage(imageUrl) {
