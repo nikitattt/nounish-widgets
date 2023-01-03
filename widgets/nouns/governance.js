@@ -34,6 +34,9 @@ const endTime = data.auction.endTime
 const image = data.auction.image
 const seed = data.auction.seed
 
+const activeProps = numOfPropsByState(data.proposals, "ACTIVE")
+const pendingProps = numOfPropsByState(data.proposals, "PENDING")
+
 const w = new ListWidget()
 w.backgroundColor = pickByState(coolBackground, warmBackground)
 w.url = widgetUrl
@@ -49,15 +52,27 @@ commName.font = Font.heavySystemFont(12)
 
 daoNameW.addSpacer(null)
 
-const activePropsTitle = daoNameW.addText(`Active 1`)
-activePropsTitle.textColor = pickByState(coolDarkText, warmDarkText)
-activePropsTitle.font = Font.systemFont(12)
+if (activeProps > 0) {
+    const activePropsTitle = daoNameW.addText(`Active `)
+    activePropsTitle.textColor = pickByState(coolLightText, warmLightText)
+    activePropsTitle.font = Font.systemFont(12)
 
-daoNameW.addSpacer(4)
+    const activePropsNumber = daoNameW.addText(`${activeProps}`)
+    activePropsNumber.textColor = pickByState(coolDarkText, warmDarkText)
+    activePropsNumber.font = Font.systemFont(12)
 
-const pendingPropsTitle = daoNameW.addText(`Pending 4`)
-pendingPropsTitle.textColor = pickByState(coolDarkText, warmDarkText)
-pendingPropsTitle.font = Font.systemFont(12)
+    daoNameW.addSpacer(4)
+}
+
+if (pendingProps > 0) {
+    const pendingPropsTitle = daoNameW.addText(`Pending `)
+    pendingPropsTitle.textColor = pickByState(coolLightText, warmLightText)
+    pendingPropsTitle.font = Font.systemFont(12)
+
+    const pendingPropsNumber = daoNameW.addText(`${pendingProps}`)
+    pendingPropsNumber.textColor = pickByState(coolDarkText, warmDarkText)
+    pendingPropsNumber.font = Font.systemFont(12)
+}
 
 w.addSpacer(4)
 w.addImage(createLine(850, 2, pickByState(coolBorder, warmBorder)))
@@ -128,6 +143,8 @@ function displayProposal(proposal) {
     titleText.lineLimit = 1
 
     //  ----
+
+    w.addSpacer(2)
 
     const dataW = w.addStack()
     dataW.centerAlignContent()
@@ -218,4 +235,16 @@ function secondsToDhms(seconds) {
     var sDisplay = s > 0 ? s + 's' : ''
 
     return hDisplay + mDisplay + sDisplay
+}
+
+function numOfPropsByState(proposals, state) {
+    let n = 0
+
+    proposals.forEach(e => {
+        if (e.state === state) {
+            n++
+        }
+    });
+
+    return n
 }
