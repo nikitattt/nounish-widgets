@@ -4,14 +4,13 @@ import { ethers } from 'ethers'
 import { ImageData, getNounData } from '@nouns/assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
-import { Nouns, Proposal } from '../utils/types'
 import { AnkrProvider } from '@ethersproject/providers'
 import {
   getProposalEndTimestamp,
-  getProposalState,
-  getProposalTitle
+  getProposalState
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
+import { Nouns, Proposal } from '../types/nouns'
 
 const { palette } = ImageData
 
@@ -36,11 +35,22 @@ const query = `
         }
       },
       proposals (where: {status_in: [PENDING, ACTIVE]}) {
-        id,
-        startBlock,
-        endBlock,
-        status,
-        description
+        id
+        proposer {
+          id
+        }
+        startBlock
+        endBlock
+        quorumVotes
+        minQuorumVotesBPS
+        maxQuorumVotesBPS
+        title
+        status
+        executionETA
+        forVotes
+        againstVotes
+        abstainVotes
+        totalSupply
       }
     }
   `
@@ -81,11 +91,25 @@ const getNounsData = async (
     const state = getProposalState(blockNumber, prop)
 
     if (state) {
-      proposals.push({
-        title: getProposalTitle(prop),
+      // console.log(prop)
+
+      let propToAdd: Proposal = {
+        id: Number(prop.id),
+        title: prop.title,
         state: state,
-        endTime: getProposalEndTimestamp(blockNumber, state, prop)
-      })
+        endTime: getProposalEndTimestamp(blockNumber, state, prop),
+        quorum: prop.quorumVotes
+      }
+
+      if (state === 'ACTIVE') {
+        propToAdd.votes = {
+          yes: prop.forVotes,
+          no: prop.againstVotes,
+          abstain: prop.abstainVotes
+        }
+      }
+
+      proposals.push(propToAdd)
     }
   }
 

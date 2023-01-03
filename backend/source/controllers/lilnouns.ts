@@ -4,14 +4,13 @@ import { ethers } from 'ethers'
 import { ImageData, getNounData } from '@lilnounsdao/assets'
 import { buildSVG } from '@nouns/sdk'
 import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
-import { Nouns, Proposal } from '../utils/types'
 import { AnkrProvider } from '@ethersproject/providers'
 import {
   getProposalEndTimestamp,
-  getProposalState,
-  getProposalTitle
+  getProposalState
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
+import { LilNouns, LilProposal } from '../types/lil-nouns'
 
 const { palette } = ImageData
 
@@ -41,7 +40,7 @@ const query = `
         startBlock,
         endBlock,
         status,
-        description
+        title
       }
     }
   `
@@ -76,21 +75,22 @@ const getLilNounsData = async (
 
   const blockNumber = await provider.getBlockNumber()
 
-  const proposals = Array<Proposal>()
+  const proposals = Array<LilProposal>()
 
   for (const prop of data.proposals) {
     const state = getProposalState(blockNumber, prop)
 
     if (state) {
       proposals.push({
-        title: getProposalTitle(prop),
+        id: Number(prop.id),
+        title: prop.title,
         state: state,
         endTime: getProposalEndTimestamp(blockNumber, state, prop)
       })
     }
   }
 
-  let nounsData: Nouns = {
+  let nounsData: LilNouns = {
     auction: {
       id: parseInt(data.auctions[0].id),
       currentBid: ethers.utils.formatEther(amount),

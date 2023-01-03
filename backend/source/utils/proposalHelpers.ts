@@ -1,4 +1,4 @@
-import { ProposalSubgraphEntity } from './types'
+import { ProposalSubgraphEntity } from '../types/shared'
 
 export const getProposalState = (
   blockNumber: number,
@@ -18,12 +18,6 @@ export const getProposalState = (
     return 'ACTIVE'
   }
   return null
-}
-
-export const getProposalTitle = (proposal: ProposalSubgraphEntity) => {
-  const titleEnd = proposal.description.indexOf('\n\n')
-
-  return proposal.description.substring(2, titleEnd)
 }
 
 export const getProposalEndTimestamp = (
