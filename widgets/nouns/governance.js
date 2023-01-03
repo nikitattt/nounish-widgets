@@ -22,6 +22,8 @@ const warmAccent = new Color('#f9f1f1')
 
 const red = new Color('#C24949')
 const redSemiTransparent = new Color('#C24949', 0.4)
+const green = new Color('#44b369')
+const greenSemiTransparent = new Color('#44b369', 0.4)
 
 const widgetUrl = 'https://nouns.wtf/vote'
 
@@ -104,21 +106,15 @@ function pickByState(cool, warm) {
 }
 
 function displayProposal(proposal) {
-    let barTextColor
-    let barBorderColor
     let barText
     let time
     let deadlinePrefix
 
     if (proposal.state === "ACTIVE") {
-        barTextColor = pickByState(coolLightText, warmLightText)
-        barBorderColor = pickByState(coolBorder, warmBorder)
         barText = 'Active'
         time = new Date(proposal.endTime)
         deadlinePrefix = "Ends "
     } else if (proposal.state === "PENDING") {
-        barTextColor = pickByState(coolLightText, warmLightText)
-        barBorderColor = pickByState(coolBorder, warmBorder)
         barText = 'Pending'
         time = new Date(proposal.endTime)
         deadlinePrefix = "Starts "
@@ -134,47 +130,79 @@ function displayProposal(proposal) {
     }
 
     const deadline = getTime(time)
-    // const title = proposal.title
-    // const id = 
 
     const titleText = w.addText(`${proposal.id} · ${proposal.title}`)
     titleText.textColor = pickByState(coolDarkText, warmDarkText)
     titleText.font = Font.semiboldSystemFont(12)
     titleText.lineLimit = 1
 
-    //  ----
-
     w.addSpacer(2)
 
     const dataW = w.addStack()
     dataW.centerAlignContent()
 
-    displayBar(dataW, barText, barTextColor, barBorderColor)
+    if (proposal.state === "ACTIVE") {
+        displayBar(dataW, barText, green, greenSemiTransparent)
+    } else if (proposal.state === "PENDING") {
+        displayBar(
+            dataW,
+            barText,
+            pickByState(coolLightText, warmLightText),
+            pickByState(coolBorder, warmBorder)
+        )
+    }
     dataW.addSpacer(4)
-    displayBar(dataW, deadlinePrefix + deadline, barTextColor, barBorderColor)
-    dataW.addSpacer(4)
-    displayBar(dataW, `Quorum: ${proposal.quorum}`, barTextColor, barBorderColor)
-    dataW.addSpacer(4)
+    displayBar(
+        dataW,
+        deadlinePrefix + deadline,
+        pickByState(coolLightText, warmLightText),
+        pickByState(coolBorder, warmBorder)
+    )
 
     if (proposal.state === "ACTIVE") {
-        displayBar(dataW, proposal.votes.yes, barTextColor, barBorderColor)
         dataW.addSpacer(4)
-        displayBar(dataW, proposal.votes.abstain, barTextColor, barBorderColor)
+        displayBar(dataW, proposal.votes.yes, green, greenSemiTransparent)
         dataW.addSpacer(4)
-        displayBar(dataW, proposal.votes.no, barTextColor, barBorderColor)
+        displayBar(
+            dataW,
+            proposal.votes.abstain,
+            pickByState(coolLightText, warmLightText),
+            pickByState(coolBorder, warmBorder)
+        )
+        dataW.addSpacer(4)
+        displayBar(dataW, proposal.votes.no, red, redSemiTransparent)
+        dataW.addSpacer(4)
+        displayBar(
+            dataW,
+            `Quorum: `,
+            pickByState(coolLightText, warmLightText),
+            pickByState(coolBorder, warmBorder),
+            `${proposal.quorum}`
+        )
+        dataW.addSpacer(4)
     }
 }
 
-function displayBar(widget, text, textColor, borderColor) {
+function displayBar(widget, text, textColor, borderColor, secondText) {
     const barW = widget.addStack()
     barW.cornerRadius = 3
     barW.borderWidth = 2
     barW.borderColor = borderColor
     barW.setPadding(2, 3, 2, 3)
 
-    const barTxt = barW.addText(text)
-    barTxt.textColor = textColor
-    barTxt.font = Font.boldSystemFont(8)
+    if (secondText) {
+        const firstTxt = barW.addText(text)
+        firstTxt.textColor = borderColor
+        firstTxt.font = Font.boldSystemFont(8)
+
+        const secondTxt = barW.addText(secondText)
+        secondTxt.textColor = textColor
+        secondTxt.font = Font.boldSystemFont(8)
+    } else {
+        const barTxt = barW.addText(text)
+        barTxt.textColor = textColor
+        barTxt.font = Font.boldSystemFont(8)
+    }
 }
 
 async function loadImage(imageUrl) {
