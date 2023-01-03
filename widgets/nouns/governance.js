@@ -86,7 +86,7 @@ let totalDisplayed = 0
 let propsToDisplay = 3
 
 if (config.widgetFamily == "large") {
-    propsToDisplay = 6
+    propsToDisplay = 8
 }
 
 for (const proposal of data.proposals) {
