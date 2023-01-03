@@ -62,11 +62,10 @@ if (activeProps > 0) {
     const activePropsNumber = daoNameW.addText(`${activeProps}`)
     activePropsNumber.textColor = pickByState(coolDarkText, warmDarkText)
     activePropsNumber.font = Font.systemFont(11)
-
-    daoNameW.addSpacer(4)
 }
 
 if (pendingProps > 0) {
+    daoNameW.addSpacer(4)
     const pendingPropsTitle = daoNameW.addText(`Pending `)
     pendingPropsTitle.textColor = pickByState(coolLightText, warmLightText)
     pendingPropsTitle.font = Font.systemFont(11)
@@ -77,7 +76,7 @@ if (pendingProps > 0) {
 }
 
 w.addSpacer(4)
-w.addImage(createLine(850, 2, pickByState(coolBorder, warmBorder)))
+w.addImage(createLine(850, 1, pickByState(coolBorder, warmBorder)))
 
 // ----- PROPOSALS SECTION -----
 
@@ -141,7 +140,7 @@ function displayProposal(proposal) {
     titleText.font = Font.semiboldSystemFont(12)
     titleText.lineLimit = 1
 
-    w.addSpacer(2)
+    w.addSpacer(1)
 
     const dataW = w.addStack()
     dataW.centerAlignContent()
