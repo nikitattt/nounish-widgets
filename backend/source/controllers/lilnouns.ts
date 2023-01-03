@@ -7,7 +7,8 @@ import { shortAddress, shortENS } from '../utils/addressAndENSDisplayUtils'
 import { AnkrProvider } from '@ethersproject/providers'
 import {
   getProposalEndTimestamp,
-  getProposalState
+  getProposalState,
+  getProposalTitle
 } from '../utils/proposalHelpers'
 import sharp from 'sharp'
 import { LilNouns, LilProposal } from '../types/lil-nouns'
@@ -40,7 +41,7 @@ const query = `
         startBlock,
         endBlock,
         status,
-        title
+        description
       }
     }
   `
@@ -83,7 +84,7 @@ const getLilNounsData = async (
     if (state) {
       proposals.push({
         id: Number(prop.id),
-        title: prop.title,
+        title: getProposalTitle(prop),
         state: state,
         endTime: getProposalEndTimestamp(blockNumber, state, prop)
       })

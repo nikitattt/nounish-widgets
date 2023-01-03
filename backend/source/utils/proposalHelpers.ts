@@ -20,6 +20,12 @@ export const getProposalState = (
   return null
 }
 
+export const getProposalTitle = (proposal: ProposalSubgraphEntity) => {
+  const titleEnd = proposal.description.indexOf('\n\n')
+
+  return proposal.description.substring(2, titleEnd)
+}
+
 export const getProposalEndTimestamp = (
   blockNumber: number,
   state: string,
