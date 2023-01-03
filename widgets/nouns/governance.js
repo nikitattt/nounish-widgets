@@ -57,11 +57,11 @@ daoNameW.addSpacer(null)
 if (activeProps > 0) {
     const activePropsTitle = daoNameW.addText(`Active `)
     activePropsTitle.textColor = pickByState(coolLightText, warmLightText)
-    activePropsTitle.font = Font.systemFont(12)
+    activePropsTitle.font = Font.systemFont(11)
 
     const activePropsNumber = daoNameW.addText(`${activeProps}`)
     activePropsNumber.textColor = pickByState(coolDarkText, warmDarkText)
-    activePropsNumber.font = Font.systemFont(12)
+    activePropsNumber.font = Font.systemFont(11)
 
     daoNameW.addSpacer(4)
 }
@@ -69,11 +69,11 @@ if (activeProps > 0) {
 if (pendingProps > 0) {
     const pendingPropsTitle = daoNameW.addText(`Pending `)
     pendingPropsTitle.textColor = pickByState(coolLightText, warmLightText)
-    pendingPropsTitle.font = Font.systemFont(12)
+    pendingPropsTitle.font = Font.systemFont(11)
 
     const pendingPropsNumber = daoNameW.addText(`${pendingProps}`)
     pendingPropsNumber.textColor = pickByState(coolDarkText, warmDarkText)
-    pendingPropsNumber.font = Font.systemFont(12)
+    pendingPropsNumber.font = Font.systemFont(11)
 }
 
 w.addSpacer(4)
