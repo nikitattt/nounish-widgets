@@ -36,9 +36,6 @@ const query = `
       },
       proposals (where: {status_in: [PENDING, ACTIVE]}) {
         id
-        proposer {
-          id
-        }
         startBlock
         endBlock
         quorumVotes
