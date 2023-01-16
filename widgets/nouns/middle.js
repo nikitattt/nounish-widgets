@@ -71,6 +71,7 @@ const countdownW = auctionSectionW.addStack()
 countdownW.layoutVertically()
 countdownW.addSpacer(4)
 
+// TODO: add auction ended from lil nouns
 const auctionEndsIn = countdownW.addText('Auction ends in')
 auctionEndsIn.textColor = pickByState(coolDarkText, warmDarkText)
 auctionEndsIn.font = Font.systemFont(12)
@@ -98,6 +99,7 @@ const bidW = auctionSectionW.addStack()
 bidW.layoutVertically()
 bidW.addSpacer(4)
 
+// TODO: add winning bid text from lilnouns
 const currentBidTxt = bidW.addText('Current Bid')
 currentBidTxt.textColor = pickByState(coolDarkText, warmDarkText)
 currentBidTxt.font = Font.systemFont(12)
@@ -131,6 +133,7 @@ proposalsSectionTitleW.addImage(createLine(600, 2, pickByState(coolBorder, warmB
 let firstDone = false
 let totalDisplayed = 0
 
+// TODO: add text if no proposals from lilnouns
 for (const proposal of data.proposals) {
     if (totalDisplayed > 2) continue
     w.addSpacer(4)
