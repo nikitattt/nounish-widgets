@@ -45,6 +45,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
       <main className="max-w-screen-md mx-auto my-20 text-center text-lg px-8">
         <div className="w-28 h-28 mx-auto mb-20">
           <Image
+            alt=""
             className=""
             src="/img/widgets/nouns/icon.png"
             height={485}
@@ -55,6 +56,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         <div className="mt-4 text-2xl">Keep an eye on nouns auction</div>
         <div className="mt-16">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/nouns/main.png"
             height={793}
@@ -66,13 +68,9 @@ const Nouns: NextPage<{ data: string }> = (props) => {
           controlled by iOS. Sadly, that's the way widgets work on iOS :(
         </div>
         <div className="mt-6 text-sm font-medium w-4/5 mx-auto">
-          <div className='text-base font-bold'>
-            Updates:
-          </div>
-          <div className='mt-2'>
-            16 Jan 2023 · Version 0.2.0
-          </div>
-          <div className='mt-0 font-normal'>
+          <div className="text-base font-bold">Updates:</div>
+          <div className="mt-2">16 Jan 2023 · Version 0.2.0</div>
+          <div className="mt-0 font-normal">
             The time when widget was updated last time was added.
           </div>
         </div>
@@ -93,6 +91,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         </div>
         <div className="mt-4">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/shared/scriptable.png"
             height={793}
@@ -147,6 +146,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         </div>
         <div className="mt-4">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/shared/add-script.png"
             height={793}
@@ -165,6 +165,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         </div>
         <div className="mt-4">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/shared/add-code.png"
             height={793}
@@ -181,6 +182,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         </div>
         <div className="mt-4">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/shared/edit-widget.png"
             height={793}
@@ -191,6 +193,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         <div className="mt-2">Select the script you have created above.</div>
         <div className="mt-4">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/shared/choose-script.png"
             height={793}
@@ -201,6 +204,7 @@ const Nouns: NextPage<{ data: string }> = (props) => {
         <div className="mt-2">All good now!</div>
         <div className="mt-4">
           <Image
+            alt=""
             className="rounded-xl"
             src="/img/widgets/nouns/main.png"
             height={793}
