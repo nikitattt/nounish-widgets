@@ -85,7 +85,8 @@ let totalDisplayed = 0
 let propsToDisplay = 3
 
 if (config.widgetFamily == "large") {
-    propsToDisplay = 8
+    propsToDisplay = 9
+    // TODO: line that separates title disappears
 }
 
 for (const proposal of data.proposals) {

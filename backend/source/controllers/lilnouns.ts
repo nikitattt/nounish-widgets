@@ -36,11 +36,16 @@ const query = `
         }
       },
       proposals (where: {status_in: [PENDING, ACTIVE]}) {
-        id,
-        startBlock,
-        endBlock,
-        status,
-        title
+        id
+        startBlock
+        endBlock
+        quorumVotes
+        description
+        status
+        executionETA
+        forVotes
+        againstVotes
+        abstainVotes
       }
     }
   `
@@ -77,16 +82,39 @@ const getLilNounsData = async (
 
   const proposals = Array<LilProposal>()
 
+  // for (const prop of data.proposals) {
+  //   const state = getProposalState(blockNumber, prop)
+
+  //   if (state) {
+  //     proposals.push({
+  //       id: Number(prop.id),
+  //       title: prop.title,
+  //       state: state,
+  //       endTime: getProposalEndTimestamp(blockNumber, state, prop)
+  //     })
+  //   }
+  // }
   for (const prop of data.proposals) {
     const state = getProposalState(blockNumber, prop)
 
     if (state) {
-      proposals.push({
+      let propToAdd: LilProposal = {
         id: Number(prop.id),
         title: prop.title,
         state: state,
-        endTime: getProposalEndTimestamp(blockNumber, state, prop)
-      })
+        endTime: getProposalEndTimestamp(blockNumber, state, prop),
+        quorum: prop.quorumVotes
+      }
+
+      if (state === 'ACTIVE') {
+        propToAdd.votes = {
+          yes: prop.forVotes,
+          no: prop.againstVotes,
+          abstain: prop.abstainVotes
+        }
+      }
+
+      proposals.push(propToAdd)
     }
   }
 
