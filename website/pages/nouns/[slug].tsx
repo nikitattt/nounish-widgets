@@ -1,7 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 
-const NounsWidgetPage: NextPage<{ data: string }> = (props) => {
+import widgets from '../../content/widgets.json'
+
+const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
   const { data } = props
 
   return (
@@ -15,7 +17,7 @@ const NounsWidgetPage: NextPage<{ data: string }> = (props) => {
       </Head>
 
       <main className="mt-20 px-8 sm:px-20 md:px-40">
-        <div className="mt-2">Nouns Widget</div>
+        <div className="mt-2">{data.title}</div>
       </main>
 
       <footer className="flex mt-20"></footer>
@@ -24,14 +26,20 @@ const NounsWidgetPage: NextPage<{ data: string }> = (props) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const widget = widgets.nouns.find((e) => e.slug === context.params!.slug)
+
   return {
-    props: { widgets: {} }
+    props: { data: widget }
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: any[] = widgets.nouns.map((e) => {
+    return { params: { slug: e.slug } }
+  })
+
   return {
-    paths: [{ params: { name: 'small' } }, { params: { name: 'medium' } }],
+    paths: paths,
     fallback: false // can also be true or 'blocking'
   }
 }

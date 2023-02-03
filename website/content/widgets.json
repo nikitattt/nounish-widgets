@@ -1,0 +1,26 @@
+{
+  "nouns": [
+    {
+      "slug": "medium-general",
+      "title": "Nouns Auction and Governance Widget",
+      "description": "Keep an eye on nouns auction and active props",
+      "widgetIconImage": "/img/widgets/nouns-medium/icon.png",
+      "widgetPromoImage": "/img/widgets/nouns-medium/main.png",
+      "widgetCode": "/widgets/code/nouns-medium.txt",
+      "additionalSizes": [
+        {
+          "size": "",
+          "image": ""
+        }
+      ],
+      "meta": {
+        "title": "Nouns Auction and Governance Widget",
+        "description": "Keep an eye on nouns auction and active props",
+        "shareImage": "https://iamng.wtf/img/widgets/nouns-medium/main.png",
+        "url": "https://iamng.wtf/widgets/nouns-medium",
+        "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
+      },
+      "updates": []
+    }
+  ]
+}
