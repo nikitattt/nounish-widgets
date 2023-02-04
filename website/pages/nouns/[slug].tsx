@@ -101,10 +101,14 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
               //     files: [data.script.path]
               //   })
               // ) {
-              navigator.share({
-                text: 'I want to share this'
-                // files: [data.script.path]
-              })
+              fetch(data.script.path)
+                .then((r) => r.text())
+                .then((text) => {
+                  navigator.share({
+                    text: text
+                    // files: [data.script.path]
+                  })
+                })
               // } else {
               //   window.alert('cannot share')
               // }
