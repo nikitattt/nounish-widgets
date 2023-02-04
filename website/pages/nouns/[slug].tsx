@@ -95,18 +95,19 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           <button
             className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
             onClick={() => {
-              if (
-                navigator.canShare &&
-                navigator.canShare({
-                  files: [data.script.path]
-                })
-              ) {
-                navigator.share({
-                  files: [data.script.path]
-                })
-              } else {
-                window.alert('cannot share')
-              }
+              // if (
+              //   navigator.canShare &&
+              //   navigator.canShare({
+              //     files: [data.script.path]
+              //   })
+              // ) {
+              navigator.share({
+                text: 'I want to share this'
+                // files: [data.script.path]
+              })
+              // } else {
+              //   window.alert('cannot share')
+              // }
               // download(data.script.path, data.script.fileName)
             }}
           >
