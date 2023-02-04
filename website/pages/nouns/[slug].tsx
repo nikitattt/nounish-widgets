@@ -94,7 +94,12 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
                     </a> */}
           <button
             className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
-            onClick={() => download(data.script.path, data.script.fileName)}
+            onClick={() => {
+              if (navigator.canShare(data.script.path)) {
+                navigator.share(data.script.path)
+              } else return
+              // download(data.script.path, data.script.fileName)
+            }}
           >
             <p className="font-bold">Download</p>
           </button>
