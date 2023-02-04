@@ -7,8 +7,8 @@
       "widgetIconImage": "/img/nouns/medium-general/icon.png",
       "widgetPromoImage": "/img/nouns/medium-general/main.png",
       "script": {
-        "path": "/scripts/nouns/medium-general.scriptable",
-        "fileName": "medium-general.scriptable"
+        "path": "/scripts/nouns/medium-general.json",
+        "fileName": "medium-general.json"
       },
       "size": "medium",
       "type": "general",
