@@ -4,9 +4,14 @@
       "slug": "medium-general",
       "title": "Nouns Auction and Governance Widget",
       "description": "Keep an eye on nouns auction and active props",
-      "widgetIconImage": "/img/widgets/nouns-medium/icon.png",
-      "widgetPromoImage": "/img/widgets/nouns-medium/main.png",
-      "widgetCode": "/widgets/code/nouns-medium.txt",
+      "widgetIconImage": "/img/nouns/medium-general/icon.png",
+      "widgetPromoImage": "/img/nouns/medium-general/main.png",
+      "script": {
+        "path": "/scripts/nouns/medium-general.scriptable",
+        "fileName": "medium-general.scriptable"
+      },
+      "size": "medium",
+      "type": "general",
       "additionalSizes": [
         {
           "size": "",
