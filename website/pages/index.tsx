@@ -5,6 +5,16 @@ import Link from 'next/link'
 
 import widgets from '../content/widgets.json'
 
+const WidgetLink = ({ image, slug }: { image: string; slug: string }) => {
+  return (
+    <Link href={`/nouns/${slug}`}>
+      <div className="mt-16 max-w-sm text-center">
+        <img alt="" className="rounded-xl h-40 w-auto" src={image} />
+      </div>
+    </Link>
+  )
+}
+
 const Home: NextPage<{ data: any }> = (props) => {
   const { data } = props
 
@@ -30,15 +40,21 @@ const Home: NextPage<{ data: any }> = (props) => {
         <h1 className="mt-8 text-center text-6xl font-black tracking-tight">
           Nounish Widgets
         </h1>
-        <div className="flex flex-col gap-2">
+        <p className="mt-12 text-center text-purple font-semibold text-xl">
+          Never miss important events in Nouns ecosystem
+        </p>
+        <h2 className="mt-20 text-center text-3xl font-bold">Nouns DAO</h2>
+        <div className="grid grid-cols-2 gap-2">
           {data.nouns.map((e: any, i: number) => {
             return (
-              <Link key={i} href={`/nouns/${e.slug}`}>
-                {e.title}
-              </Link>
+              <div key={i} className="w-max">
+                <WidgetLink slug={e.slug} image={e.widgetIconImage} />
+              </div>
             )
           })}
         </div>
+        <h2 className="mt-20 text-center text-3xl font-bold">Lil Nouns DAO</h2>
+        <h2 className="mt-20 text-center text-3xl font-bold">Prop House</h2>
       </main>
 
       <footer className="flex mt-20"></footer>
