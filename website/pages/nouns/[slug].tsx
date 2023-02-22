@@ -134,6 +134,12 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           >
             <p className="font-bold">Save to Scriptable</p>
           </a>
+          <a
+            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
+            href="scriptable:///run?scriptName=ScriptDude&name=COVID%20Trend%20Widget&source=https://github.com/mvan231/Scriptable/blob/main/COVID%20Trend%20Widget/COVID%20Trend%20Widget.js&docs=https://github.com/mvan231/Scriptable/tree/main/COVID%20Trend%20Widget"
+          >
+            <p className="font-bold">Save to Spt Original</p>
+          </a>
         </div>
         {/* <div className="mt-2 flex flex-row gap-1 items-baseline justify-center text-sm">
                     <a
