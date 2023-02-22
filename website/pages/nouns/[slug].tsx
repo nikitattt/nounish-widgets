@@ -153,6 +153,12 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           >
             <p className="font-bold">Name & My Source</p>
           </a>
+          <a
+            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
+            href={`scriptable:///add`}
+          >
+            <p className="font-bold">Create Script</p>
+          </a>
         </div>
         {/* <div className="mt-2 flex flex-row gap-1 items-baseline justify-center text-sm">
                     <a
