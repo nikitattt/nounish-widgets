@@ -127,6 +127,7 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           >
             <p className="font-bold">Download</p>
           </button>
+          <div>- - - - - - - - - </div>
           {/* scriptable:///run?scriptName=ScriptDude&name=COVID%20Trend%20Widget&source=https://github.com/mvan231/Scriptable/blob/main/COVID%20Trend%20Widget/COVID%20Trend%20Widget.js&docs=https://github.com/mvan231/Scriptable/tree/main/COVID%20Trend%20Widget */}
           <a
             className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
@@ -136,9 +137,21 @@ const NounsWidgetPage: NextPage<{ data: any }> = (props) => {
           </a>
           <a
             className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
-            href="scriptable:///run?scriptName=ScriptDude&name=COVID%20Trend%20Widget&source=https://github.com/mvan231/Scriptable/blob/main/COVID%20Trend%20Widget/COVID%20Trend%20Widget.js&docs=https://github.com/mvan231/Scriptable/tree/main/COVID%20Trend%20Widget"
+            href={`scriptable:///run?scriptName=${'WidgetTest'}&name=${'WidgetTestName'}`}
           >
-            <p className="font-bold">Save to Spt Original</p>
+            <p className="font-bold">Only name</p>
+          </a>
+          <a
+            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
+            href={`scriptable:///run?scriptName=${'WidgetTest'}&name=${'WidgetTestName'}&source=${'https://github.com/mvan231/Scriptable/blob/main/COVID%20Trend%20Widget/COVID%20Trend%20Widget.js'}`}
+          >
+            <p className="font-bold">Name & Source</p>
+          </a>
+          <a
+            className="cursor-pointer px-12 py-5 bg-blue rounded-2xl hover:bg-white hover:border-blue border-4 text-white  hover:text-blue"
+            href={`scriptable:///run?scriptName=${'WidgetTest'}&name=${'WidgetTestName'}&source=${'https://nounswidgets.wtf/${data.script.path}'}`}
+          >
+            <p className="font-bold">Name & My Source</p>
           </a>
         </div>
         {/* <div className="mt-2 flex flex-row gap-1 items-baseline justify-center text-sm">
