@@ -1,6 +1,6 @@
 const url = 'https://nounswidgets.wtf/scripts/shared/auto-install.js'
 
-const version = 1
+const version = 2
 
 await update()
 
