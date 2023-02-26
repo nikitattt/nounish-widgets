@@ -5,12 +5,12 @@ const version = 1
 await update()
 
 const w = new ListWidget()
-w.backgroundColor = new Color.black()
+w.backgroundColor = Color.black()
 
 w.addSpacer(null)
 const vT = w.addText(`${version}`)
-vT.textColor = new Color.white()
-vT.font = Font.heavyRoundSystemFont(32)
+vT.textColor = Color.white()
+vT.font = Font.heavyRoundedSystemFont(32)
 vT.centerAlignText()
 w.addSpacer(null)
 

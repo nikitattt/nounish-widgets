@@ -9,7 +9,7 @@ fileManager = FileManager.iCloud()
 documentsDirectory = fileManager.documentsDirectory()
 
 let filePath = fileManager.joinPath(documentsDirectory, scriptName + '.js');
-let req = new Request(sourceUrl);
+let req = new Request(url);
 let code = await req.loadString();
 let codeToStore = Data.fromString(`// Variables used by Scriptable.\n// These must be at the very top of the file. Do not edit.\n// icon-color: ${color}; icon-glyph: ${icon};\n\n${code}`);
 fileManager.write(filePath, codeToStore);
