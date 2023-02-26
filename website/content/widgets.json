@@ -53,10 +53,7 @@
         "twitterShare": "http://twitter.com/share?text=Want to keep an eye on nouns auction and active props?%0a%0aGet yourself the widget!&url=https://iamng.wtf/widgets/nouns-medium"
       },
       "updates": []
-    }
-  ],
-  "lilNouns": [],
-  "propHouse": [
+    },
     {
       "slug": "auto-install-test",
       "title": "Auto Install Test",
@@ -84,5 +81,7 @@
       },
       "updates": []
     }
-  ]
+  ],
+  "lilNouns": [],
+  "propHouse": []
 }
